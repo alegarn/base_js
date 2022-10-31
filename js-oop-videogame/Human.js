@@ -82,7 +82,7 @@ class Human {
 };
 
 class Fighter extends Human {
-	constructor() {
+	constructor(name, type, hp, damage, mana, status, manaDmg, nameSpeAtt,resistance) {
     super(name, type, hp, damage, mana, status, manaDmg, nameSpeAtt,resistance);
 		this.name = "Grace";
     this.type = "fighter";
@@ -104,7 +104,7 @@ class Fighter extends Human {
 };
 
 class Paladin extends Human {
-	constructor() {
+	constructor(name, type, hp, damage, mana, status, manaDmg, nameSpeAtt,resistance) {
     super(name, type, hp, damage, mana, status, manaDmg, nameSpeAtt,resistance);
     this.name = "Ulder";
     this.type = "paladin"
@@ -125,14 +125,15 @@ class Paladin extends Human {
 
 
 class Monk extends Human {
-	constructor() {
+	constructor(name, type, hp, damage, mana, status, manaDmg, nameSpeAtt,resistance) {
     super(name, type, hp, damage, mana, status, manaDmg, nameSpeAtt,resistance);
     this.name = "Moana";
+    this.type = "monk";
 		this.hp = 8;
 		this.damage = 2;
 		this.mana = 200;
     this.nameSpeAtt = "Heal";
-    this.manaDmg = manaDmg;
+    this.manaDmg = 0;
 	}
 
   specialAttack(mana) {
@@ -143,9 +144,10 @@ class Monk extends Human {
 };
 
 class Berzerker extends Human{
-	constructor() {
+	constructor(name, type, hp, damage, mana, status, manaDmg, nameSpeAtt,resistance) {
     super(name, type, hp, damage, mana, status, manaDmg, nameSpeAtt,resistance);
     this.name = "Draven";
+    this.type = "berzerker";
 		this.hp = 8;
 		this.damage = 4;
 		this.mana = 0;
@@ -160,9 +162,10 @@ class Berzerker extends Human{
 };
 
 class Assassin extends Human{
-	constructor() {
+	constructor(name, type, hp, damage, mana, status, manaDmg, nameSpeAtt,resistance) {
     super(name, type, hp, damage, mana, status, manaDmg, nameSpeAtt,resistance);
     this.name = "Carl";
+    this.type = "assassin";
 		this.hp = 6;
 		this.damage = 6;
 		this.mana = 20;
@@ -271,6 +274,12 @@ class Game {
   constructor(turn=10, status) {
     this.turn = turn;
     this.status = status;
+
+  }
+
+  startGame() {
+    let characters = this.buildPlayers();
+    this.currentTurn(characters);
   }
 
   startTurn(turn) {
@@ -280,6 +289,35 @@ class Game {
 
   turnLeft(turn) {
     console.log(`${turn} turn left.`);
+  }
+
+  buildPlayers() {
+    let player1 = new Fighter("Henri","human",1,1,0,"alive",0, "",0);
+    let player2 = new Paladin("Henri","human",1,1,0,"alive",0, "",0);
+    let player3 = new Human("Louis","human", 10, 1, 10, "alive", 5, "manchette", 0);
+    let player4 = new Monk("Henri","human",1,1,0,"alive",0, "",0);
+    let player5 = new Berzerker("Louis","human", 10, 1, 10, "alive", 5, "manchette", 0);
+    let player6 = new Assassin("Louis","human", 10, 1, 10, "alive", 5, "manchette", 0);
+    let characters = [player1, player2, player3, player4, player5, player6];
+    return(characters)
+  }
+
+  currentTurn(characters) {
+
+    while (this.turn > 0 | this.status != "ongoing") {
+      let theNewTurn = this.newTurn(this.turn, "0");
+      this.startTurn(this.turn);
+      let onGoingCharacters = characters.filter(player => player.status == "alive");
+      let turnPlayer = theNewTurn.chooseOrder(onGoingCharacters);
+      let players = theNewTurn.fights(turnPlayer, characters, this);
+      players.map((player) => player.backToNormal());
+      let playersLenght = Object.keys(players).length;
+
+      if (playersLenght <= 1) {
+        this.whoWon(players[0]);
+        break} ;
+    };
+
   }
 
   newTurn(turn) {
@@ -299,7 +337,7 @@ class Game {
 
   watchStats(players) {
     players.map((player) => {
-      console.log(player);
+      console.log(`- ${player.name}: HP: ${player.hp} # Mana: ${player.mana} # Type: ${player.type} # Resistance: ${player.resistance}`);
     });
   }
 
@@ -316,30 +354,6 @@ class Game {
 
 
 let game = new Game(11, "ongoing");
+game.startGame();
 
-let player1 = new Fighter(name="Henri", type="human", hp=1, damage=1, mana=0, status="alive", manaDmg=0, nameSpeAtt="",resistance=0);
-let player2 = new Paladin(name="Louis",type="human", hp=10, damage=1, mana=10, status="alive", manaDmg=5, nameSpeAtt="manchette", resistance=0);
-let player3 = new Human(name="Louis",type="human", hp=10, damage=1, mana=10, status="alive", manaDmg=5, nameSpeAtt="manchette", resistance=0);
-let player4 = new Monk(name="Henri", type="human", hp=1, damage=1, mana=0, status="alive", manaDmg=0, nameSpeAtt="",resistance=0);
-let player5 = new Berzerker(name="Henri", type="human", hp=1, damage=1, mana=0, status="alive", manaDmg=0, nameSpeAtt="",resistance=0);
-let player6 = new Assassin(name="Henri", type="human", hp=1, damage=1, mana=0, status="alive", manaDmg=0, nameSpeAtt="",resistance=0);
-
-let characters = [player1, player2, player3, player4, player5, player6];
-
-
-while (game.turn > 0 | game.status != "ongoing") {
-  let theNewTurn = game.newTurn(game.turn, "0");
-  game.startTurn(game.turn);
-  let onGoingCharacters = characters.filter(player => player.status == "alive");
-  let turnPlayer = theNewTurn.chooseOrder(onGoingCharacters);
-  let players = theNewTurn.fights(turnPlayer, characters, game);
-  players.map((player) => player.backToNormal());
-  let playersLenght = Object.keys(players).length;
-
-  if (playersLenght <= 1) {
-    game.whoWon(players[0]);
-    break} ;
-
-};
-
-//  swtch-cse clss spe mna html
+// html
