@@ -61,6 +61,7 @@ if (url.includes('features')) {
     changeTitle(colDom, title);
   };
 
+
   function shuffleCards() {
 
     const col1Dom = document.getElementById("col1");
@@ -89,6 +90,3 @@ if (url.includes('features')) {
   const shuffleButton = document.querySelector('#theShuffleButton');
   shuffleButton.addEventListener("click", shuffleCards);
 }
-
-
-
