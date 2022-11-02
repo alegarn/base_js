@@ -24,9 +24,7 @@ function activeTab(navItems, url) {
   return(tabName)
 };
 
-
 const tabName = activeTab(navItems, url);
-
 
 if (url.includes('features')) {
 
@@ -38,7 +36,7 @@ if (url.includes('features')) {
   function changeImage(dom, images) {
     const domImage = selectDomImage(dom);
     const image = getRandom(images);
-    domImage.setAttribute("style", `background-image: url('${image}');`)
+    domImage.setAttribute("style", `background-image: url('${image}');`);
   };
 
 
@@ -53,26 +51,7 @@ if (url.includes('features')) {
     domTitle.nodeValue = (`${title}`);
   };
   
-
-  const col1Dom = document.getElementById("col1");
-  const col2Dom = document.getElementById("col2");
-  const col3Dom = document.getElementById("col3");
-
-  
   const getRandom = (data) => data[Math.floor(Math.random() * data.length)];
-
-  const images = ['./images/1.png', './images/2.png' , './images/3.png'];
-  const playerClass = ['Berzerker', 'Paladin', 'Fighter' ];
-  const card1 = [col1Dom, images, playerClass]
-
-  const logos = ['./images/logo1.png', './images/logo1.png', './images/logo1.png'];
-  const charactName = ['Draven', 'Ulder', 'Grace'];
-  const card2 = [col2Dom, logos, charactName]
-
-  const classAttackLogos = ['./images/special1.png', './images/special2.png', './images/special3.png']
-  const classAttackNames = ['Rage', 'Healing Lighting', 'Dark Vision'];
-  const card3 = [col3Dom, classAttackLogos, classAttackNames]
-
 
   function shuffleCard(card) {
     const colDom = card[0];
@@ -82,17 +61,34 @@ if (url.includes('features')) {
     changeTitle(colDom, title);
   };
 
-  function shuffleCards(card1, card2, card3) {
-    console.log('hey');
+  function shuffleCards() {
+
+    const col1Dom = document.getElementById("col1");
+    const col2Dom = document.getElementById("col2");
+    const col3Dom = document.getElementById("col3");
+
+    const images = ['./images/1.png', './images/2.png' , './images/3.png'];
+    const playerClass = ['Berzerker', 'Paladin', 'Fighter' ];
+    const card1 = [col1Dom, images, playerClass];
+
+    const logos = ['./images/logo1.png', './images/logo1.png', './images/logo1.png'];
+    const charactName = ['Draven', 'Ulder', 'Grace'];
+    const card2 = [col2Dom, logos, charactName];
+
+    const classAttackLogos = ['./images/special1.png', './images/special2.png', './images/special3.png'];
+    const classAttackNames = ['Rage', 'Healing Lighting', 'Dark Vision'];
+    const card3 = [col3Dom, classAttackLogos, classAttackNames];
+
     shuffleCard(card1);
     shuffleCard(card2);
     shuffleCard(card3);
-  }
+
+  };
   
 
-  const shuffleButton = document.getElementById('theShuffleButton');
+  const shuffleButton = document.querySelector('#theShuffleButton');
+  shuffleButton.addEventListener("click", shuffleCards);
+}
 
-  shuffleButton.addEventListener(onclick, shuffleCards(card1, card2, card3));
 
-};
 
