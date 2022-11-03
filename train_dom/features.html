@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./stylesheet/bootstrap.css">
+  </head>
+
+  <body>
+
+  <div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+        <span class="fs-4">Simple header</span>
+      </a>
+
+      <ul class="nav nav-tabs">
+        <li class="nav-item active"><a href="./index.html" class="nav-link active" aria-current="page">Home</a></li>
+        <li class="nav-item" id="feature"><a href="./features.html" class="nav-link">Features</a></li>
+        <li class="nav-item"><a href="./pricing.html" class="nav-link">Pricing</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+      </ul>
+    </header>
+  </div>
+
+
+  <div class="container px-4 py-5" id="custom-cards">
+    <h2 class="pb-2 border-bottom">Custom characters (if you reload this page)</h2>
+
+    <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+      <div class="col" id="col1">
+        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg align-items-center" style="background-image: url('./images/1.png');">
+          <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Short title, long jacket</h3>
+            <ul class="d-flex list-unstyled mt-auto">
+              <li class="me-auto">
+                <img src="./images/1.png" width="32" height="32" class="rounded-circle border border-white">
+              </li>
+              <li class="d-flex align-items-center me-3">
+                <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>
+                <small>Class</small>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" id="col2">
+        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg align-items-center" style="background-image: url('./images/logo1.png');">
+          <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Much longer title that wraps to multiple lines</h3>
+            <ul class="d-flex list-unstyled mt-auto">
+              <li class="me-auto">
+                <img src="./images/logo1.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
+              </li>
+              <li class="d-flex align-items-center me-3">
+                <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>
+                <small>Name</small>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" id="col3">
+        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg align-items-center" style="background-image: url('./images/special1.png');">
+          <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1 text-white text-center ">
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Magic:</h3>
+            <ul class="d-flex list-unstyled mt-auto">
+              <li class="me-auto">
+                <img src="./images/special1.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
+              </li>
+              <li class="d-flex align-items-center me-3">
+                <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"/></svg>
+                <small>Special attack name</small>
+              </li>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="text-center">
+      <button type="button" class="btn btn-primary" id="theShuffleButton">Shuffle ! (or not)</button>
+    </div>
+
+  </div>
+
+
+    
+    <script src="./scripts/features.js" async defer></script>
+  </body>
+</html>
