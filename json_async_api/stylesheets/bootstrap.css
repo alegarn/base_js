@@ -11263,55 +11263,20 @@ textarea.form-control-lg {
   }
 }
 
-.hero-image {
-  /* https://www.w3schools.com/howto/howto_css_hero_image.asp */
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/glad_colis.jpeg");
-  height: 50%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-}
-
-.text-white {
-  color: var(--bs-white);
-}
-
 .dark-background {
   background-color: #2c3034;
 }
 
-.exit-intent-popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 1;
-  background: rgba(33, 33, 33, 0.8);
-  transform: translateY(60%) scale(0);
-}
-
-
-
-.exit-intent-popup.visible {
-    transform: translateY(0) scale(1);
-    transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
-}
-
-.newsletter {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.center {
+  align-items: center;
+  display: flex;
 }
 
 .slide-card {
-  width: 18rem;
   position: relative;
   display: flex;
   flex-direction: column;
-  min-width: 0;
+  min-width: 100%;
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
@@ -11328,7 +11293,100 @@ textarea.form-control-lg {
 }
 
 .scrollArea {
+  display: flex;
   align-items: center;
+  text-align: center;
+  flex-direction: column;
 }
 
+.card-popup {
+  position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 1;
+	background: rgba(33, 33, 33, 0.8);
+	transform: translateY(60%) scale(0);
+}
+
+.card-popup.visible {
+	transform: translateY(0) scale(1);
+	transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+
+ /* The Modal (background) */
+ .modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+} 
+
+ /* Modal Header */
+ .modal-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+/* Modal Body */
+.modal-body {padding: 2px 16px;}
+
+/* Modal Footer */
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@keyframes animatetop {
+  from {top: -300px; opacity: 0}
+  to {top: 0; opacity: 1}
+} 
 /*# sourceMappingURL=bootstrap.css.map */
