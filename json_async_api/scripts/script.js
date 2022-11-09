@@ -5,20 +5,21 @@ const movieList = document.getElementById('movie-container');
 const scrollArea =  document.querySelector(".scrollArea")
 
 
-
-
 var options = {
   root: document.querySelector('#scrollArea'),
-  rootMargin: '5px',
   threshold: 0.50
 };
 
 
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      const htmlImg = entry.target.firstElementChild;
-      const url = window.location.href;
-      htmlImg.src = `${htmlImg.src}`.replace(`${url}+++`, "");
+
+      if (entry.isIntersecting) {
+        const htmlImg = entry.target.firstElementChild;
+        const url = window.location.href;
+        htmlImg.src = `${htmlImg.src}`.replace(`${url}+++`, "");
+      };
+      
       entry.target.classList.toggle("show", entry.isIntersecting);
 
     });
