@@ -2,7 +2,7 @@ const filmName = document.getElementById('filmName');
 const formSubmit = document.getElementById("submit");
 const movieList = document.getElementById('movie-container');
 
-const scrollArea =  document.querySelector(".scrollArea")
+const scrollArea =  document.querySelector(".scrollArea");
 
 
 var options = {
@@ -12,9 +12,11 @@ var options = {
 
 
 const observer = new IntersectionObserver(entries => {
+  
     entries.forEach(entry => {
-      console.log(entry.target);
+
       if (entry.isIntersecting) {
+
         const htmlImg = entry.target.getElementsByClassName("img-fluid")[0];
         const url = window.location.href;
         htmlImg.src = `${htmlImg.src}`.replace(`${url}+++`, "");
@@ -28,6 +30,7 @@ const observer = new IntersectionObserver(entries => {
           const title = btn.target.parentNode.querySelector(".card-title");
 
           modal.style.display = "block";
+
           fetch(`http://www.omdbapi.com/?i=${ID}&apikey=${API_KEY}&type=movie&r=json&t=${title.textContent}&plot=full`).then((response) => { return response.json(); })
           .then((response) => {
             const modalBody = modal.querySelector(".modal-body");
@@ -46,12 +49,12 @@ const observer = new IntersectionObserver(entries => {
 
           })
           .catch((error) => { console.error(error); });
-          console.log(btn.target);
-        })
+
+        });
 
         span.onclick = function() {
           modal.style.display = "none";
-        }
+        };
       };
       
       entry.target.classList.toggle("show", entry.isIntersecting);
@@ -106,7 +109,7 @@ function renderMovie(scrollArea, returnedList) {
             <p class="runtime"></p>
           </div> \
           <div class="modal-footer"> \
-            <h3>${movie.Year}</h3> \
+            <h3>Year: ${movie.Year}</h3> \
           </div> \
         </div> \
       </div> \
@@ -126,7 +129,7 @@ let callbackFunction = formSubmit.addEventListener('click', (e) => {
 
   fetch(`http://www.omdbapi.com/?i=${ID}&apikey=${API_KEY}&type=movie&r=json&page=5&s=${submitName}&plot=full`).then((response) => { return response.json(); })
   .then((response) => {
-    console.log(response);
+
     const returnedList = response.Search;
 
     renderMovie(scrollArea, returnedList);
