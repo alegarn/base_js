@@ -16,16 +16,13 @@ const observer = new IntersectionObserver(entries => {
       console.log(entry.target);
       if (entry.isIntersecting) {
         const htmlImg = entry.target.getElementsByClassName("img-fluid")[0];
-        console.log(htmlImg);
         const url = window.location.href;
         htmlImg.src = `${htmlImg.src}`.replace(`${url}+++`, "");
 
         const htmlbtn = entry.target.querySelector(".popup");
         const modal = entry.target.querySelector(".modal");
         const span = modal.querySelector(".close");
-        console.log(htmlbtn);
-        console.log(modal);
-        console.log(span);
+
 
         htmlbtn.addEventListener("click", (btn) => {
           const title = btn.target.parentNode.querySelector(".card-title");
@@ -34,16 +31,18 @@ const observer = new IntersectionObserver(entries => {
           fetch(`http://www.omdbapi.com/?i=${ID}&apikey=${API_KEY}&type=movie&r=json&t=${title.textContent}&plot=full`).then((response) => { return response.json(); })
           .then((response) => {
             const modalBody = modal.querySelector(".modal-body");
-            console.log(modalBody);
+
             const genre = modalBody.childNodes[1];
-            console.log(genre);
             genre.textContent = `${response.Genre}`;
-            const director =  modalBody.childNodes[5];
-            director.textContent = `${response.Director}`;
-            const runtime = modalBody.childNodes[7];
-            runtime.textContent = `${response.Runtime}`;
+
             const plot = modalBody.childNodes[3];
             plot.textContent = `${response.Plot}`;
+
+            const director =  modalBody.childNodes[5];
+            director.textContent = `${response.Director}`;
+
+            const runtime = modalBody.childNodes[7];
+            runtime.textContent = `${response.Runtime}`;
 
           })
           .catch((error) => { console.error(error); });
